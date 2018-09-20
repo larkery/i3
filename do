@@ -13,6 +13,10 @@ view () {
     i3m "${OWNER:+move workspace to output $OWNER}; workspace number $WSN; move workspace to output $FOCUSED_OUTPUT; workspace number $WSN"
 }
 
+warp () {
+    xdotool getwindowfocus mousemove --polar --window %1 0 0
+}
+
 pack () {
     L=1
     i3-msg -t get_workspaces | jq -r 'sort_by(.num) |.[]| [.num, .name]|@sh' |
@@ -35,10 +39,11 @@ case $1 in
     view)
         view "$2"
         pack
+        warp
         ;;
     pick)
         ST=$(i3-msg -t get_workspaces)
-        NAME=$(echo "$ST" | jq -r '.[] | .name' | dmenu -p "workspace: ")
+        NAME=$(echo "$ST" | jq -r 'sort_by(.num) | .[] | .name' | dmenu -p "workspace: ")
         [[ $? -gt 0 ]] && exit 0
         INDEX=$(echo "$ST" | jq -r '.[] | select(.name == "'$NAME'") | .num')
         if [[ -z "$INDEX" ]]; then
@@ -53,7 +58,7 @@ case $1 in
         pack
         ;;
     warp)
-        xdotool getwindowfocus mousemove --polar --window %1 0 0
+        warp
         ;;
     rename)
         NAME=$(dmenu -p "new name: ")

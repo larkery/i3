@@ -9,7 +9,10 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+mouse_warping none
 set $do exec --no-startup-id ~/.config/i3/do
+set $warp exec --no-startup-id ~/.config/i3/do warp
+
 set $ens exec --no-startup-id
 
 for_window [class=".*"] border pixel 2
@@ -36,7 +39,7 @@ font pango:DejaVu Sans 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return $ens i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -48,21 +51,21 @@ bindsym $mod+w exec firefox
 bindsym XF86Launch1 $ens touchpad
 
 # change focus
-bindsym $mod+j focus left; $do warp
-bindsym $mod+k focus down; $do warp
-bindsym $mod+i focus up; $do warp
-bindsym $mod+l focus right; $do warp
+bindsym $mod+j focus left; $warp
+bindsym $mod+k focus down; $warp
+bindsym $mod+i focus up; $warp
+bindsym $mod+l focus right; $warp
 
-bindsym $mod+Mod1+j move left; $do warp
-bindsym $mod+Mod1+k move down; $do warp
-bindsym $mod+Mod1+i move up; $do warp
-bindsym $mod+Mod1+l move right; $do warp
+bindsym $mod+Mod1+j move left; $warp
+bindsym $mod+Mod1+k move down; $warp
+bindsym $mod+Mod1+i move up; $warp
+bindsym $mod+Mod1+l move right; $warp
 
 # move focused window
-bindsym $mod+Shift+j mark swap; focus left; swap container with mark swap; [con_mark=swap] focus; unmark swap; $do warp
-bindsym $mod+Shift+k mark swap; focus down; swap container with mark swap; [con_mark=swap] focus; unmark swap; $do warp
-bindsym $mod+Shift+i mark swap; focus up; swap container with mark swap; [con_mark=swap] focus; unmark swap; $do warp
-bindsym $mod+Shift+l mark swap; focus right; swap container with mark swap; [con_mark=swap] focus; unmark swap; $do warp
+bindsym $mod+Shift+j mark swap; focus left; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
+bindsym $mod+Shift+k mark swap; focus down; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
+bindsym $mod+Shift+i mark swap; focus up; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
+bindsym $mod+Shift+l mark swap; focus right; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
 
 # split in horizontal orientation
 bindsym $mod+h split h
