@@ -35,6 +35,21 @@ pack () {
     
 }
 
+dmenu_path () {
+    cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
+    if [ -d "$cachedir" ]; then
+        cache=$cachedir/dmenu_run
+    else
+        cache=$HOME/.dmenu_cache # if no xdg dir, fall back to dotfile in ~
+    fi
+    IFS=:
+    if stest -dqr -n "$cache" $PATH; then
+        stest -flx $PATH | sort -u | tee "$cache"
+    else
+        cat "$cache"
+    fi
+}
+
 case $1 in
     view)
         view "$2"
@@ -66,6 +81,10 @@ case $1 in
         ST=$(i3-msg -t get_workspaces)
         FOCUSED_NUM=$(echo "$ST" | jq '.[] | select(.focused) | .num')
         i3m "rename workspace to \"${FOCUSED_NUM}${NAME:+: $NAME}\""
+        ;;
+    run)
+        # version of dmenu_run which replaces itself
+        exec $(dmenu_path | dmenu -p "run: ")
         ;;
     *)
         
