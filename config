@@ -50,6 +50,10 @@ bindsym $mod+e $ens emacsclient -c -n
 bindsym $mod+w exec firefox
 bindsym XF86Launch1 $ens touchpad
 
+bindsym XF86AudioRaiseVolume $ens pamixer -i 5
+bindsym XF86AudioLowerVolume $ens pamixer -d 5
+bindsym XF86AudioMute $ens pamixer -t
+
 # change focus
 bindsym $mod+j focus left; $warp
 bindsym $mod+k focus down; $warp
@@ -61,11 +65,32 @@ bindsym $mod+Mod1+k move down; $warp
 bindsym $mod+Mod1+i move up; $warp
 bindsym $mod+Mod1+l move right; $warp
 
+set $swp1 mark _swp
+set $swp2 swap container with mark _swp; [con_mark=_swp] focus; unmark _swp;
+
 # move focused window
-bindsym $mod+Shift+j mark swap; focus left; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
-bindsym $mod+Shift+k mark swap; focus down; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
-bindsym $mod+Shift+i mark swap; focus up; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
-bindsym $mod+Shift+l mark swap; focus right; swap container with mark swap; [con_mark=swap] focus; unmark swap; $warp
+bindsym $mod+Shift+j $swp1; focus left;  $swp2; $warp
+bindsym $mod+Shift+k $swp1; focus down;  $swp2; $warp
+bindsym $mod+Shift+i $swp1; focus up;    $swp2; $warp
+bindsym $mod+Shift+l $swp1; focus right; $swp2; $warp
+
+# change focus
+bindsym $mod+Left focus left; $warp
+bindsym $mod+Down focus down; $warp
+bindsym $mod+Up focus up; $warp
+bindsym $mod+Right focus right; $warp
+
+bindsym $mod+Mod1+Left move left; $warp
+bindsym $mod+Mod1+Down move down; $warp
+bindsym $mod+Mod1+Up move up; $warp
+bindsym $mod+Mod1+Right move right; $warp
+
+# move focused window
+bindsym $mod+Shift+Left  $swp1; focus left;  $swp2; $warp
+bindsym $mod+Shift+Down  $swp1; focus down;  $swp2; $warp
+bindsym $mod+Shift+Up    $swp1; focus up;    $swp2; $warp
+bindsym $mod+Shift+Right $swp1; focus right; $swp2; $warp
+
 
 # split in horizontal orientation
 bindsym $mod+h split h
