@@ -18,6 +18,8 @@ set $ens exec --no-startup-id
 for_window [class=".*"] border pixel 2
 for_window [class="password-input|Yad"] floating enable; move position mouse
 
+bindsym --release button2 kill
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -49,6 +51,7 @@ bindsym $mod+x $do run
 bindsym $mod+e $ens emacsclient -c -n
 bindsym $mod+w exec firefox
 bindsym XF86Launch1 $ens touchpad
+bindsym $mod+Escape $do power
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5

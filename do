@@ -86,6 +86,16 @@ case $1 in
         # version of dmenu_run which replaces itself
         exec $(dmenu_path | dmenu -p "run: ")
         ;;
+    power)
+        COM=$(dmenu -p "systemctl: " <<EOF
+hibernate
+suspend
+reboot
+poweroff
+EOF
+              )
+        [[ -n $COM ]] && systemctl $COM
+        ;;
     *)
         
 esac
