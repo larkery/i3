@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+dmenu () {
+    command dmenu -fn "Sans-14" -nb "#fee" -nf "#111" -sb "#a3a" "$@"
+}
+
 i3m () {
     i3-msg "$@" 2>&1 >/dev/null
 }
