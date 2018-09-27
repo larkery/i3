@@ -54,6 +54,9 @@ bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5
 bindsym XF86AudioMute $ens pamixer -t
 
+bindsym $mod+o focus output left; $warp
+bindsym $mod+Shift+o move container to output left; focus output left; $warp
+
 # change focus
 bindsym $mod+j focus left; $warp
 bindsym $mod+k focus down; $warp
