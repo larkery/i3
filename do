@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 dmenu () {
-    command dmenu -fn "Sans-14" -nb "#fee" -nf "#111" -sb "#a3a" "$@"
+    command dmenu -fn "Sans-16" -nb "#fee" -nf "#111" -sb "#a3a" "$@"
 }
 
 i3m () {
@@ -99,6 +99,10 @@ poweroff
 EOF
               )
         [[ -n $COM ]] && systemctl $COM
+        ;;
+    swap-outputs)
+        i3m $(i3-msg -t get_workspaces |
+                  jq -r '.[] | "workspace \"" + .name + "\", move workspace to output right, "') nop
         ;;
     *)
         
