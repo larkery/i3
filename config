@@ -25,13 +25,16 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+x $do run
 bindsym $mod+e $ens emacsclient -c -n
-bindsym $mod+w exec firefox
+bindsym $mod+w $ens firefox
 bindsym XF86Launch1 $ens touchpad
 bindsym $mod+Escape $do power
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5
 bindsym XF86AudioMute $ens pamixer -t
+
+bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
+bindsym XF86MonBrightnessUp $ens xbacklight -inc 5
 
 bindsym $mod+o focus output left; $warp
 bindsym $mod+Shift+o move container to output left; focus output left; $warp

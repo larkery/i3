@@ -18,7 +18,7 @@ view () {
 }
 
 warp () {
-    xdotool getwindowfocus mousemove --polar --window %1 0 0
+    xdotool getactivewindow mousemove --polar --window %1 0 0
 }
 
 pack () {
