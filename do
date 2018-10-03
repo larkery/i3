@@ -91,14 +91,21 @@ case $1 in
         exec $(dmenu_path | dmenu -p "run: ")
         ;;
     power)
-        COM=$(dmenu -p "systemctl: " <<EOF
+        declare -A commands
+        commands=([hibernate]="systemctl hibernate"
+                  [suspend]="systemctl suspend"
+                  [randr]="autorandr -c"
+                  [wifi]="wpa_gui")
+        COM=$(dmenu -p "system: " <<EOF
 hibernate
 suspend
-reboot
-poweroff
+randr
+wifi
 EOF
               )
-        [[ -n $COM ]] && systemctl $COM
+        COM="${commands[$COM]}"
+        [[ -z $COM ]] && exit 0
+        exec $COM
         ;;
     swap-outputs)
         i3m $(i3-msg -t get_workspaces |
