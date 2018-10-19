@@ -40,6 +40,8 @@ bindsym $mod+o focus output left; $warp
 bindsym $mod+Shift+o move container to output left; focus output left; $warp
 bindsym $mod+Mod1+o  $do swap-outputs
 
+bindsym $mod+u [urgent="newest"] focus
+
 # change focus
 bindsym $mod+j focus left; $warp
 bindsym $mod+k focus down; $warp
