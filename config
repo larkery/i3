@@ -35,9 +35,10 @@ bindsym XF86AudioMute $ens pamixer -t
 
 bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
 bindsym XF86MonBrightnessUp $ens xbacklight -inc 5
+bindsym $mod+p $ens autorandr -c --default horizontal
 
-bindsym $mod+o focus output left; $warp
-bindsym $mod+Shift+o move container to output left; focus output left; $warp
+bindsym $mod+o $do focus-next-output
+bindsym $mod+Shift+o $do shift-next-output
 bindsym $mod+Mod1+o  $do swap-outputs
 
 bindsym $mod+u [urgent="newest"] focus

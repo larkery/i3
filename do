@@ -38,6 +38,11 @@ pack () {
         }
     
 }
+next-output () {
+    local ws=$(i3-msg -t get_workspaces | jq -r '.[] | select(.visible) | [.output, .focused] | @tsv')
+    echo "$ws
+$ws" | grep -A 1 true | grep -v true | head -n 1 | cut -f 1 -d $'\t'    
+}
 
 dmenu_path () {
     cachedir=${XDG_CACHE_HOME:-"$HOME/.cache"}
@@ -108,8 +113,19 @@ EOF
         exec $COM
         ;;
     swap-outputs)
+        # todo preserve focus
         i3m $(i3-msg -t get_workspaces |
                   jq -r '.[] | "workspace \"" + .name + "\", move workspace to output right, "') nop
+        ;;
+    focus-next-output)
+        ws=$(next-output)
+        i3m "focus output \"$ws\""
+        warp
+        ;;
+    shift-next-output)
+        ws=$(next-output)
+        i3m "move container to output \"$ws\"; focus output \"$ws\""
+        warp
         ;;
     *)
         
