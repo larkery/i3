@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+i3m () {
+    i3-msg "$@" 2>&1 >/dev/null
+}
+
+next-output () {
+    local ws=$(i3-msg -t get_workspaces | jq -r '.[] | select(.visible) | [.output, .focused] | @tsv')
+    echo "$ws
+$ws" | grep -A 1 true | grep -v true | head -n 1 | cut -f 1 -d $'\t'    
+}
+
+warp () {
+    xdotool getactivewindow mousemove --polar --window %1 0 0
+}
+
+case $1 in
+    swap)
+        # todo preserve focus
+        declare -A next_output
+        last_output=""
+        first_output=""
+        for output in $(i3-msg -t get_outputs | jq -r '.[] | select(.active) | .name'); do
+            first_output=${first_output:-$output}
+            next_output[$output]=$last_output
+            last_output=$output
+        done
+        next_output[$first_output]=$last_output
+        i3-msg -t get_workspaces | jq -r '.[] | [.visible, .output, .name] | @sh' |
+            {
+                com="nop"
+                endcom="nop"
+                while read -r visible output name; do
+                    eval "name=$name"
+                    eval "output=$output"
+                    com="${com}, workspace \"$name\", move workspace to output \"${next_output[$output]}\""
+                    if [[ $visible = true ]]; then
+                        endcom="$endcom, workspace \"$name\""
+                    fi
+                done
+                i3m $com, $endcom
+            }
+        ;;
+    focus-next)
+        ws=$(next-output)
+        i3m "focus output \"$ws\""
+        warp
+        ;;
+    shift-next)
+        ws=$(next-output)
+        i3m "move container to output \"$ws\"; focus output \"$ws\""
+        warp
+        ;;
+esac

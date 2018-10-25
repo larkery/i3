@@ -1,6 +1,7 @@
 mouse_warping none
 
 set $do exec --no-startup-id ~/.config/i3/do
+set $outputs exec --no-startup-id ~/.config/i3/outputs
 set $warp exec --no-startup-id ~/.config/i3/do warp
 
 set $ens exec --no-startup-id
@@ -37,9 +38,9 @@ bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
 bindsym XF86MonBrightnessUp $ens xbacklight -inc 5
 bindsym $mod+p $ens autorandr -c --default horizontal
 
-bindsym $mod+o $do focus-next-output
-bindsym $mod+Shift+o $do shift-next-output
-bindsym $mod+Mod1+o  $do swap-outputs
+bindsym $mod+o       $outputs focus-next
+bindsym $mod+Shift+o $outputs shift-next
+bindsym $mod+Mod1+o  $outputs swap
 
 bindsym $mod+u [urgent="newest"] focus
 
