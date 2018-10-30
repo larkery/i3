@@ -107,5 +107,9 @@ EOF
         [[ -z $COM ]] && exit 0
         exec $COM
         ;;
+    empty-workspace)
+        NEXTWS=$(i3-msg -t get_workspaces | jq 'map(.num) | max + 1')
+        i3m "workspace $NEXTWS"
+        ;;
     *)
 esac

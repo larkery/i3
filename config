@@ -9,6 +9,8 @@ set $ens exec --no-startup-id
 for_window [class=".*"] border pixel 2
 for_window [class="password-input|Yad"] floating enable; move position mouse
 
+popup_during_fullscreen leave_fullscreen
+
 bindsym --release button2 kill
 
 set $mod Mod4
@@ -41,6 +43,10 @@ bindsym $mod+p $ens autorandr -c --default horizontal
 bindsym $mod+o       $outputs focus-next
 bindsym $mod+Shift+o $outputs shift-next
 bindsym $mod+Mod1+o  $outputs swap
+bindsym $mod+period  workspace next_on_output
+bindsym $mod+comma   workspace prev_on_output
+bindsym $mod+slash   workspace back_and_forth
+bindsym $mod+s       $do empty-workspace
 
 bindsym $mod+u [urgent="newest"] focus
 
