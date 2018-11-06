@@ -38,7 +38,8 @@ case $1 in
                         endcom="$endcom, workspace \"$name\""
                     fi
                 done
-                i3m $com, $endcom
+                i3m $com
+                i3m $endcom
             }
         ;;
     focus-next)

@@ -88,7 +88,12 @@ case $1 in
         ;;
     run)
         # version of dmenu_run which replaces itself
-        exec $(dmenu_path | dmenu -p "run: ")
+        CMD=$(dmenu_path | dmenu -p "run: ")
+        if [[ $? -eq 0 ]]; then
+            exec $CMD
+        else
+            rm -f "$HOME/.cache/dmenu_run"
+        fi
         ;;
     power)
         declare -A commands
