@@ -24,6 +24,7 @@ bindsym $mod+Return $ens urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q $ens i3-pop
 
 # start dmenu (a program launcher)
 bindsym $mod+x $do run
@@ -107,6 +108,7 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+bindsym $mod+m $do select-window
 
 # focus the parent container
 bindsym $mod+a focus parent

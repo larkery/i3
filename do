@@ -116,5 +116,12 @@ EOF
         NEXTWS=$(i3-msg -t get_workspaces | jq 'map(.num) | max + 1')
         i3m "workspace $NEXTWS"
         ;;
+    select-window)
+        WIN=$(xwinmosaic -w)
+        if [[ -n $WIN ]]; then
+            i3 "[id=$WIN] focus"
+            xdotool mousemove --polar --window $WIN 0 0
+        fi
+        ;;
     *)
 esac
