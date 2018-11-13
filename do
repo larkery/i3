@@ -116,6 +116,10 @@ EOF
         NEXTWS=$(i3-msg -t get_workspaces | jq 'map(.num) | max + 1')
         i3m "workspace $NEXTWS"
         ;;
+    shift-empty)
+        NEXTWS=$(i3-msg -t get_workspaces | jq 'map(.num) | max + 1')
+        i3m "move container to workspace number $NEXTWS"
+        ;;
     select-window)
         WIN=$(xwinmosaic -w)
         if [[ -n $WIN ]]; then
