@@ -170,7 +170,7 @@ mode "$mode_run" {
      bindsym c exec chromium, mode default
      bindsym p exec passm, mode default
      bindsym a exec arandr, mode default
-     bindsym w exec wpa_gui, mode default
+     bindsym w exec wpa-gui, mode default
      bindsym v exec pavucontrol, mode default
      bindsym m exec emacsclient -c -e '(notmuch-search "tag:inbox")', mode default
 
