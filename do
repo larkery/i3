@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 dmenu () {
-    command dmenu -fn "Sans-18" "$@" -nf "#fff" -nb "#55004A" -sf "#55004A" -sb "#ffa0a0"
+    command dmenu -fn "Sans-16" "$@" -nf "#fff" -nb "#22001A" -sf "#55004A" -sb "#ffa0a0"
 }
 
 i3m () {
