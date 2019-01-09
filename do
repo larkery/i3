@@ -121,8 +121,14 @@ EOF
         i3m "move container to workspace number $NEXTWS"
         ;;
     select-window)
-        WIN=$(xwinmosaic -w)
-        if [[ -n $WIN ]]; then
+        WINDOWS=$(i3-msg -t get_tree | jq '.. | objects | select(.window) | [.window, .name, .window_properties.class]')
+
+
+        
+        WINDOW_N=$(echo "$WINDOWS" | jq -r '.[1]' | dmenu -l 16 -p "window: " -1)
+
+        if [[ -n $WINDOW_N ]]; then
+            WIN=$(echo "$WINDOWS" | jq '.[0]' | sed -n $WINDOW_N'{p;q;}')
             i3 "[id=$WIN] focus"
             xdotool mousemove --polar --window $WIN 0 0
         fi

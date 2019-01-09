@@ -166,7 +166,7 @@ set $mode_run run: [t]elegram [c]hrome [p]assm [a]randr [w]pa [v]olctrl [m]ail
 bindsym $mod+r mode "$mode_run"
 
 mode "$mode_run" {
-     bindsym t exec telegram-desktop, mode default
+     bindsym t $ens telegram-desktop, mode default
      bindsym c exec chromium, mode default
      bindsym p exec passm, mode default
      bindsym a exec arandr, mode default
