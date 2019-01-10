@@ -118,7 +118,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+semicolon $do pick
+bindsym $mod+semicolon  $do pick
 bindsym $mod+apostrophe $do rename
 
 bindsym $mod+1 $do view 1
@@ -159,6 +159,14 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     tray_output primary
+    colors {
+    
+    background #fdf6e322
+    focused_workspace #349f89 #349f89 #fdf6e3
+    active_workspace #fdf6e380 #6c71c480 #fdf6e3
+    inactive_workspace #002b36 #002b36 #fdf6e3
+    urgent_workspace #d33682 #d33682 #fdf6e3
+           }
 }
 
 set $mode_run run: [t]elegram [c]hrome [p]assm [a]randr [w]pa [v]olctrl [m]ail
@@ -176,3 +184,8 @@ mode "$mode_run" {
 
      bindsym Escape mode default
 }
+
+client.focused #349f86 #349f85 #FFFFFF #00C1FF
+client.focused_inactive #4C2C6C #2C2C2C #ffffff #2C2C2C
+client.unfocused #4C2C6C #2C2C2C #ffffff #2C2C2C
+client.urgent #00C1FF #00C1FF #000088 #00C1FF

@@ -125,7 +125,7 @@ EOF
 
 
         
-        WINDOW_N=$(echo "$WINDOWS" | jq -r '.[1]' | dmenu -l 16 -p "window: " -1)
+        WINDOW_N=$(echo "$WINDOWS" | jq -r '.[1]' | dmenu -i -l 16 -p "window: " -1)
 
         if [[ -n $WINDOW_N ]]; then
             WIN=$(echo "$WINDOWS" | jq '.[0]' | sed -n $WINDOW_N'{p;q;}')
