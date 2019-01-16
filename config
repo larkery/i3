@@ -187,6 +187,6 @@ mode "$mode_run" {
 }
 
 client.focused #349f86 #349f85 #FFFFFF #00C1FF
-client.focused_inactive #4C2C6C #4C2C6C #ffffff #2C2C2C
+client.focused_inactive #4C2C6C #3C2C3C #ffffff #2C2C2C
 client.unfocused #4C2C6C #2C2C2C #ffffff #2C2C2C
 client.urgent #00C1FF #00C1FF #000088 #00C1FF
