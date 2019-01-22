@@ -29,7 +29,7 @@ bindsym $mod+q $ens i3-pop
 # start dmenu (a program launcher)
 bindsym $mod+x $do run
 bindsym $mod+e $ens emacsclient -c -n
-bindsym $mod+w $ens firefox
+bindsym $mod+w $ens firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
 bindsym $mod+Escape $do power
 
