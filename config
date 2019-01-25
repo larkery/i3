@@ -155,20 +155,33 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+set_from_resource $border     i3wm.border     #349f89
+set_from_resource $urgent     i3wm.urgent     #d33682
+set_from_resource $accent     i3wm.accent     #6c71c4
+set_from_resource $edge       i3wm.edge       #00C1FF
+set_from_resource $background i3wm.background #002b36
+set_from_resource $foreground i3wm.foreground #fdf6e3
+set_from_resource $border_con i3wm.border_con #fdf6e3
+set_from_resource $bar_background i3wm.bar_background #002b36
+set_from_resource $bar_foreground i3wm.bar_foreground #fdf6e3
+                  
+
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     tray_output primary
     colors {
-    
-    background #fdf6e322
-    focused_workspace #349f89 #349f89 #fdf6e3
-    active_workspace #fdf6e380 #6c71c480 #fdf6e3
-    inactive_workspace #002b36 #002b36 #fdf6e3
-    urgent_workspace #d33682 #d33682 #fdf6e3
-           }
+       background         $bar_background
+       focused_workspace  $border       $border     $bar_foreground
+       active_workspace   $foreground   $accent     $bar_foreground
+       inactive_workspace $bar_background $bar_background $bar_foreground
+       urgent_workspace   $urgent     $urgent     $bar_foreground
+    }
 }
+
+client.focused          $border     $border     $border_con  $edge
+client.focused_inactive $border     $background $foreground $background
+client.unfocused        $background $background $foreground $background
+client.urgent           $urgent     $urgent     $foreground $edge
 
 set $mode_run run: [t]elegram [c]hrome [p]assm [a]randr [w]pa [v]olctrl [m]ail
 
@@ -186,7 +199,3 @@ mode "$mode_run" {
      bindsym Escape mode default
 }
 
-client.focused #349f86 #349f85 #FFFFFF #00C1FF
-client.focused_inactive #349f86 #2C2C2C #ffffff #2C2C2C
-client.unfocused #2C2C2C #2C2C2C #ffffff #2C2C2C
-client.urgent #00C1FF #00C1FF #000088 #00C1FF
