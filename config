@@ -171,7 +171,7 @@ bar {
     tray_output primary
     colors {
        background         $bar_background
-       focused_workspace  $border       $border     $bar_foreground
+       focused_workspace  $border       $border     $border_con
        active_workspace   $foreground   $accent     $bar_foreground
        inactive_workspace $bar_background $bar_background $bar_foreground
        urgent_workspace   $urgent     $urgent     $bar_foreground
