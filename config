@@ -14,7 +14,7 @@ popup_during_fullscreen leave_fullscreen
 bindsym --release button2 kill
 
 set $mod Mod4
-font pango:DejaVu Sans 8
+font pango:Monospace 10px
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -169,6 +169,7 @@ set_from_resource $bar_foreground i3wm.bar_foreground #fdf6e3
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     tray_output primary
+    font pango:Sans 8
     colors {
        background         $bar_background
        focused_workspace  $border       $border     $border_con
