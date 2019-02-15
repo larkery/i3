@@ -46,6 +46,8 @@ bindsym $mod+Shift+o $outputs shift-next
 bindsym $mod+Mod1+o  $outputs swap
 bindsym $mod+period  workspace next_on_output
 bindsym $mod+comma   workspace prev_on_output
+bindsym $mod+Next  workspace next_on_output
+bindsym $mod+Prior   workspace prev_on_output
 bindsym $mod+slash   workspace back_and_forth
 bindsym $mod+s       $do empty-workspace
 bindsym $mod+Shift+s       $do shift-empty
