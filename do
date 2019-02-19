@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 dmenu () {
-    command dmenu -fn "Sans-16" "$@" -nf "#fff" -nb "#22001A" -sf "#55004A" -sb "#ffa0a0"
+    command dmenu "$@"  -nb '#eee' -nf black -sb black -sf '#eee'
 }
 
 i3m () {
@@ -94,23 +94,6 @@ case $1 in
         else
             rm -f "$HOME/.cache/dmenu_run"
         fi
-        ;;
-    power)
-        declare -A commands
-        commands=([hibernate]="systemctl hibernate"
-                  [suspend]="systemctl suspend"
-                  [randr]="autorandr -c"
-                  [wifi]="wpa_gui")
-        COM=$(dmenu -p "system: " <<EOF
-hibernate
-suspend
-randr
-wifi
-EOF
-              )
-        COM="${commands[$COM]}"
-        [[ -z $COM ]] && exit 0
-        exec $COM
         ;;
     empty-workspace)
         NEXTWS=$(i3-msg -t get_workspaces | jq 'map(.num) | max + 1')

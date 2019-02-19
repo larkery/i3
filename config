@@ -1,10 +1,10 @@
 mouse_warping none
 
-set $do exec --no-startup-id ~/.config/i3/do
+set $do      exec --no-startup-id ~/.config/i3/do
 set $outputs exec --no-startup-id ~/.config/i3/outputs
-set $warp exec --no-startup-id ~/.config/i3/do warp
-
-set $ens exec --no-startup-id
+set $warp    exec --no-startup-id ~/.config/i3/do warp
+set $ens     exec --no-startup-id
+set $mod     Mod4
 
 for_window [class=".*"] border pixel 2
 for_window [class="password-input|Yad"] floating enable; move position mouse
@@ -13,7 +13,6 @@ popup_during_fullscreen leave_fullscreen
 
 bindsym --release button2 kill
 
-set $mod Mod4
 font pango:Monospace 10px
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -24,40 +23,39 @@ bindsym $mod+Return $ens urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
-bindsym $mod+q $ens i3-pop
+bindsym $mod+q       $ens i3-pop
 
 # start dmenu (a program launcher)
-bindsym $mod+x $do run
-bindsym $mod+e $ens emacsclient -c -n
-bindsym $mod+w $ens firefox 2>&1 >/dev/null
+bindsym $mod+x      $do run
+bindsym $mod+e      $ens emacsclient -c -n
+bindsym $mod+w      $ens firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
-bindsym $mod+Escape $do power
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5
-bindsym XF86AudioMute $ens pamixer -t
+bindsym XF86AudioMute        $ens pamixer -t
 
 bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
-bindsym XF86MonBrightnessUp $ens xbacklight -inc 5
-bindsym $mod+p $ens autorandr -c --default horizontal
+bindsym XF86MonBrightnessUp   $ens xbacklight -inc 5
+bindsym $mod+p                $ens autorandr -c --default horizontal
 
-bindsym $mod+o       $outputs focus-next
-bindsym $mod+Shift+o $outputs shift-next
-bindsym $mod+Mod1+o  $outputs swap
-bindsym $mod+period  workspace next_on_output
-bindsym $mod+comma   workspace prev_on_output
-bindsym $mod+Next  workspace next_on_output
-bindsym $mod+Prior   workspace prev_on_output
-bindsym $mod+slash   workspace back_and_forth
-bindsym $mod+s       $do empty-workspace
-bindsym $mod+Shift+s       $do shift-empty
+bindsym $mod+o        $outputs focus-next
+bindsym $mod+Shift+o  $outputs shift-next
+bindsym $mod+Mod1+o   $outputs swap
+bindsym $mod+period   workspace next_on_output
+bindsym $mod+comma    workspace prev_on_output
+bindsym $mod+Next     workspace next_on_output
+bindsym $mod+Prior    workspace prev_on_output
+bindsym $mod+slash    workspace back_and_forth
+bindsym $mod+s        $do empty-workspace
+bindsym $mod+Shift+s  $do shift-empty
 
 bindsym $mod+u [urgent="newest"] focus
 
 # change focus
-bindsym $mod+j focus left; $warp
-bindsym $mod+k focus down; $warp
-bindsym $mod+i focus up; $warp
+bindsym $mod+j focus left;  $warp
+bindsym $mod+k focus down;  $warp
+bindsym $mod+i focus up;    $warp
 bindsym $mod+l focus right; $warp
 
 bindsym $mod+Mod1+j move left; $warp
@@ -75,14 +73,14 @@ bindsym $mod+Shift+i $swp1; focus up;    $swp2; $warp
 bindsym $mod+Shift+l $swp1; focus right; $swp2; $warp
 
 # change focus
-bindsym $mod+Left  focus left; $warp
-bindsym $mod+Down  focus down; $warp
-bindsym $mod+Up    focus up; $warp
+bindsym $mod+Left  focus left;  $warp
+bindsym $mod+Down  focus down;  $warp
+bindsym $mod+Up    focus up;    $warp
 bindsym $mod+Right focus right; $warp
 
-bindsym $mod+Mod1+Left  move left; $warp
-bindsym $mod+Mod1+Down  move down; $warp
-bindsym $mod+Mod1+Up    move up; $warp
+bindsym $mod+Mod1+Left  move left;  $warp
+bindsym $mod+Mod1+Down  move down;  $warp
+bindsym $mod+Mod1+Up    move up;    $warp
 bindsym $mod+Mod1+Right move right; $warp
 
 # move focused window
@@ -90,7 +88,6 @@ bindsym $mod+Shift+Left  $swp1; focus left;  $swp2; $warp
 bindsym $mod+Shift+Down  $swp1; focus down;  $swp2; $warp
 bindsym $mod+Shift+Up    $swp1; focus up;    $swp2; $warp
 bindsym $mod+Shift+Right $swp1; focus right; $swp2; $warp
-
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -105,6 +102,8 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout toggle tabbed splitv splith
 bindsym $mod+g layout toggle splith splitv tabbed
 bindsym $mod+Shift+t [workspace=__focused__] floating enable, floating disable; layout tabbed
+bindsym $mod+b bar mode toggle
+
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -112,13 +111,10 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-bindsym $mod+m $do select-window
+bindsym $mod+m     $do select-window
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+semicolon  $do pick
@@ -157,36 +153,35 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-set_from_resource $border     i3wm.border     #349f89
-set_from_resource $urgent     i3wm.urgent     #d33682
-set_from_resource $accent     i3wm.accent     #6c71c4
-set_from_resource $edge       i3wm.edge       #00C1FF
-set_from_resource $background i3wm.background #002b36
-set_from_resource $foreground i3wm.foreground #fdf6e3
-set_from_resource $border_con i3wm.border_con #fdf6e3
+set_from_resource $border         i3wm.border         #349f89
+set_from_resource $urgent         i3wm.urgent         #d33682
+set_from_resource $accent         i3wm.accent         #6c71c4
+set_from_resource $edge           i3wm.edge           #00C1FF
+set_from_resource $background     i3wm.background     #002b36
+set_from_resource $foreground     i3wm.foreground     #fdf6e3
+set_from_resource $border_con     i3wm.border_con     #fdf6e3
 set_from_resource $bar_background i3wm.bar_background #002b36
 set_from_resource $bar_foreground i3wm.bar_foreground #fdf6e3
-                  
 
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
-    tray_output primary
-    font pango:Sans 8
+    tray_output    primary
+    font           pango:Sans 8
     colors {
        background         $bar_background
-       focused_workspace  $border       $border     $border_con
-       active_workspace   $foreground   $accent     $bar_foreground
+       focused_workspace  $border         $border         $border_con
+       active_workspace   $foreground     $accent         $bar_foreground
        inactive_workspace $bar_background $bar_background $bar_foreground
-       urgent_workspace   $urgent     $urgent     $bar_foreground
+       urgent_workspace   $urgent         $urgent         $bar_foreground
     }
 }
 
-client.focused          $border     $border     $border_con  $edge
+client.focused          $border     $border     $border_con $edge
 client.focused_inactive $border     $background $foreground $background
 client.unfocused        $background $background $foreground $background
 client.urgent           $urgent     $urgent     $foreground $edge
 
-set $mode_run run: [t]elegram [c]hrome [p]assm [a]randr [w]pa [v]olctrl [m]ail
+set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate
 
 bindsym $mod+r mode "$mode_run"
 
@@ -195,10 +190,9 @@ mode "$mode_run" {
      bindsym c exec chromium, mode default
      bindsym p exec passm, mode default
      bindsym a exec arandr, mode default
-     bindsym w $ens wpa-gui, mode default
+     bindsym w $ens networkmanager_dmenu -nb '#eee' -nf black -sb black -sf '#eee', mode default
      bindsym v exec pavucontrol, mode default
-     bindsym m exec emacsclient -c -e '(notmuch-search "tag:inbox")', mode default
+     bindsym h $ens systemctl hibernate, mode default
 
      bindsym Escape mode default
 }
-
