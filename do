@@ -57,7 +57,7 @@ dmenu_path () {
 case $1 in
     view)
         view "$2"
-        pack
+#        pack
         warp
         ;;
     pick)
@@ -71,7 +71,7 @@ case $1 in
         else
             view "$INDEX"
         fi
-        pack
+#        pack
         ;;
     pack)
         pack

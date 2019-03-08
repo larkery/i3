@@ -119,6 +119,7 @@ bindsym $mod+a focus parent
 # switch to workspace
 bindsym $mod+semicolon  $do pick
 bindsym $mod+apostrophe $do rename
+bindsym $mod+equal      $do pack
 
 bindsym $mod+1 $do view 1
 bindsym $mod+2 $do view 2
@@ -181,7 +182,7 @@ client.focused_inactive $border     $background $foreground $background
 client.unfocused        $background $background $foreground $background
 client.urgent           $urgent     $urgent     $foreground $edge
 
-set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate
+set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate - 𝐒uspend
 
 bindsym $mod+r mode "$mode_run"
 
@@ -193,6 +194,7 @@ mode "$mode_run" {
      bindsym w $ens networkmanager_dmenu -nb '#eee' -nf black -sb black -sf '#eee', mode default
      bindsym v exec pavucontrol, mode default
      bindsym h $ens systemctl hibernate, mode default
+     bindsym s $ens systemctl suspend, mode default
 
      bindsym Escape mode default
 }
