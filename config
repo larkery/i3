@@ -19,7 +19,7 @@ font pango:Monospace 10px
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return $ens urxvt
+bindsym $mod+Return fullscreen disable, $ens urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -27,8 +27,8 @@ bindsym $mod+q       $ens i3-pop
 
 # start dmenu (a program launcher)
 bindsym $mod+x      $do run
-bindsym $mod+e      $ens emacsclient -c -n
-bindsym $mod+w      $ens firefox 2>&1 >/dev/null
+bindsym $mod+e      fullscreen disable, $ens emacsclient -c -n
+bindsym $mod+w      fullscreen disable, $ens firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
