@@ -38,11 +38,14 @@ bindsym XF86AudioMute        $ens pamixer -t
 bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
 bindsym XF86MonBrightnessUp   $ens xbacklight -inc 5
 bindsym $mod+p                $ens autorandr -c --default horizontal
+bindsym $mod+Shift+p          $ens autorandr -c --default common
+bindsym $mod+Mod1+p           $ens autorandr -c --default clone-largest
 
 bindsym $mod+o        $outputs focus-next
 bindsym $mod+Shift+o  $outputs shift-next
 bindsym $mod+Mod1+o   $outputs swap
 bindsym $mod+period   workspace next_on_output
+bindsym $mod+Tab   workspace next_on_output
 bindsym $mod+comma    workspace prev_on_output
 bindsym $mod+Next     workspace next_on_output
 bindsym $mod+Prior    workspace prev_on_output
