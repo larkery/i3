@@ -28,7 +28,7 @@ bindsym $mod+c $ens i3-pop
 # start dmenu (a program launcher)
 bindsym $mod+x      $do run
 bindsym $mod+e      fullscreen disable, $ens emacsclient -c -n
-bindsym $mod+d      fullscreen disable, $ens firefox 2>&1 >/dev/null
+bindsym $mod+w      fullscreen disable, $ens firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
@@ -107,7 +107,7 @@ bindsym $mod+g layout toggle splith splitv tabbed
 bindsym $mod+Shift+t [workspace=__focused__] floating enable, floating disable; layout tabbed
 bindsym $mod+b bar mode toggle
 
-bindsym $mod+w floating toggle
+bindsym $mod+d floating toggle
 
 #bindsym $mod+e layout toggle split
 
