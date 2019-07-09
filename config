@@ -28,7 +28,7 @@ bindsym $mod+c $ens i3-pop
 # start dmenu (a program launcher)
 bindsym $mod+x      $do run
 bindsym $mod+e      fullscreen disable, $ens emacsclient -c -n
-bindsym $mod+w      fullscreen disable, $ens firefox 2>&1 >/dev/null
+bindsym $mod+w      fullscreen disable, $ens firejail firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
@@ -193,7 +193,7 @@ bindsym $mod+r mode "$mode_run"
 
 mode "$mode_run" {
      bindsym t $ens telegram-desktop, mode default
-     bindsym c exec chromium, mode default
+     bindsym c exec firejail chromium, mode default
      bindsym p exec passm, mode default
      bindsym a exec arandr, mode default
      bindsym w $ens networkmanager_dmenu -nb '#eee' -nf black -sb black -sf '#eee', mode default
