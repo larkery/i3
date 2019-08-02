@@ -70,10 +70,10 @@ set $swp1 mark _swp
 set $swp2 swap container with mark _swp; [con_mark=_swp] focus; unmark _swp;
 
 # move focused window
-bindsym $mod+Shift+j $swp1; focus left;  $swp2; $warp
-bindsym $mod+Shift+k $swp1; focus down;  $swp2; $warp
-bindsym $mod+Shift+i $swp1; focus up;    $swp2; $warp
-bindsym $mod+Shift+l $swp1; focus right; $swp2; $warp
+bindsym $mod+Ctrl+j $swp1; focus left;  $swp2; $warp
+bindsym $mod+Ctrl+k $swp1; focus down;  $swp2; $warp
+bindsym $mod+Ctrl+i $swp1; focus up;    $swp2; $warp
+bindsym $mod+Ctrl+l $swp1; focus right; $swp2; $warp
 
 # change focus
 bindsym $mod+Left  focus left;  $warp
