@@ -150,7 +150,7 @@ bindsym $mod+Ctrl+9 move container to workspace number 9
 bindsym $mod+Ctrl+0 move container to workspace number 10
 
 bindsym $mod+z move scratchpad
-bindsym $mod+y scratchpad show
+bindsym $mod+y $do scratchpad
 
 # reload the configuration file
 bindsym $mod+Ctrl+c reload
@@ -187,9 +187,9 @@ client.focused_inactive $border     $background $foreground $background
 client.unfocused        $background $background $foreground $background
 client.urgent           $urgent     $urgent     $foreground $edge
 
-set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate - 𝐒uspend
+set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate - 𝐒uspend - Virtual𝐁ox - sc𝐑ot
 
-bindsym $mod+r mode "$mode_run"
+bindsym $mod+minus mode "$mode_run"
 
 mode "$mode_run" {
      bindsym t $ens telegram-desktop, mode default
@@ -200,6 +200,8 @@ mode "$mode_run" {
      bindsym v exec pavucontrol, mode default
      bindsym h $ens systemctl hibernate, mode default
      bindsym s $ens systemctl suspend, mode default
+     bindsym b exec VirtualBox, mode default
+     bindsym --release r $ens scrot -s '/home/hinton/tmp/screen-%F_%H-%M.png', mode default
 
      bindsym Escape mode default
 }

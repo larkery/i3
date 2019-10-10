@@ -54,7 +54,20 @@ dmenu_path () {
     fi
 }
 
+scratchpad () {
+    cur=$(i3-msg -t get_tree | jq -r '.. | select(type == "object" and .scratchpad_state != "none") | .. | select(type == "object" and .nodes == [] and .focused) | .id')
+
+    if [[ -n $cur ]]; then
+        i3m "move scratchpad, scratchpad show"
+    else
+        i3m "scratchpad show"
+    fi
+}
+
 case $1 in
+    scratchpad)
+        scratchpad
+        ;;
     view)
         view "$2"
 #        pack
