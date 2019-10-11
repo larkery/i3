@@ -57,10 +57,13 @@ dmenu_path () {
 scratchpad () {
     cur=$(i3-msg -t get_tree | jq -r '.. | select(type == "object" and .scratchpad_state != "none") | .. | select(type == "object" and .nodes == [] and .focused) | .id')
 
+    next=$(i3-msg -t get_tree | jq '[..|select(type=="object" and .output =="__i3" and .type=="con" and .window)]|.[length-1]|.window')
+    
     if [[ -n $cur ]]; then
         i3m "move scratchpad, scratchpad show"
     else
-        i3m "scratchpad show"
+        notify-send $next
+        i3m "[id=$next] scratchpad show"
     fi
 }
 
