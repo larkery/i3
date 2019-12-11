@@ -35,8 +35,8 @@ bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5
 bindsym XF86AudioMute        $ens pamixer -t
 
-bindsym XF86MonBrightnessDown $ens xbacklight -dec 5
-bindsym XF86MonBrightnessUp   $ens xbacklight -inc 5
+bindsym XF86MonBrightnessDown $ens light -U 5
+bindsym XF86MonBrightnessUp   $ens light -A 5
 bindsym $mod+p                $ens autorandr -c --default horizontal
 bindsym $mod+Ctrl+p          $ens autorandr -c --default common
 bindsym $mod+Mod1+p           $ens autorandr -c --default clone-largest
