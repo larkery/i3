@@ -42,7 +42,7 @@ bindsym $mod+Ctrl+p          $ens autorandr -c --default common
 bindsym $mod+Mod1+p           $ens autorandr -c --default clone-largest
 
 bindsym $mod+o        $outputs focus-next
-bindsym $mod+Ctrl+o  $outputs shift-next
+bindsym $mod+Shift+o  $outputs shift-next
 bindsym $mod+Mod1+o   $outputs swap
 bindsym $mod+period   workspace next_on_output
 bindsym $mod+Tab   workspace next_on_output
@@ -51,7 +51,7 @@ bindsym $mod+Next     workspace next_on_output
 bindsym $mod+Prior    workspace prev_on_output
 bindsym $mod+slash    workspace back_and_forth
 bindsym $mod+s        $do empty-workspace
-bindsym $mod+Ctrl+s  $do shift-empty
+bindsym $mod+Shift+s  $do shift-empty
 
 bindsym $mod+u [urgent="newest"] focus
 
@@ -70,10 +70,10 @@ set $swp1 mark _swp
 set $swp2 swap container with mark _swp; [con_mark=_swp] focus; unmark _swp;
 
 # move focused window
-bindsym $mod+Ctrl+j $swp1; focus left;  $swp2; $warp
-bindsym $mod+Ctrl+k $swp1; focus down;  $swp2; $warp
-bindsym $mod+Ctrl+i $swp1; focus up;    $swp2; $warp
-bindsym $mod+Ctrl+l $swp1; focus right; $swp2; $warp
+bindsym $mod+Shift+j $swp1; focus left;  $swp2; $warp
+bindsym $mod+Shift+k $swp1; focus down;  $swp2; $warp
+bindsym $mod+Shift+i $swp1; focus up;    $swp2; $warp
+bindsym $mod+Shift+l $swp1; focus right; $swp2; $warp
 
 # change focus
 bindsym $mod+Left  focus left;  $warp
@@ -87,10 +87,10 @@ bindsym $mod+Mod1+Up    move up;    $warp
 bindsym $mod+Mod1+Right move right; $warp
 
 # move focused window
-bindsym $mod+Ctrl+Left  $swp1; focus left;  $swp2; $warp
-bindsym $mod+Ctrl+Down  $swp1; focus down;  $swp2; $warp
-bindsym $mod+Ctrl+Up    $swp1; focus up;    $swp2; $warp
-bindsym $mod+Ctrl+Right $swp1; focus right; $swp2; $warp
+bindsym $mod+Shift+Left  $swp1; focus left;  $swp2; $warp
+bindsym $mod+Shift+Down  $swp1; focus down;  $swp2; $warp
+bindsym $mod+Shift+Up    $swp1; focus up;    $swp2; $warp
+bindsym $mod+Shift+Right $swp1; focus right; $swp2; $warp
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -104,7 +104,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+t layout toggle tabbed splitv splith
 bindsym $mod+g layout toggle splith splitv tabbed
-bindsym $mod+Ctrl+t [workspace=__focused__] floating enable, floating disable; layout tabbed
+bindsym $mod+Shift+t [workspace=__focused__] floating enable, floating disable; layout tabbed
 bindsym $mod+b bar mode toggle
 
 bindsym $mod+d floating toggle
@@ -112,7 +112,7 @@ bindsym $mod+d floating toggle
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Ctrl+space floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -138,26 +138,26 @@ bindsym $mod+9 $do view 9
 bindsym $mod+0 $do view 10
 
 # move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace number 1
-bindsym $mod+Ctrl+2 move container to workspace number 2
-bindsym $mod+Ctrl+3 move container to workspace number 3
-bindsym $mod+Ctrl+4 move container to workspace number 4
-bindsym $mod+Ctrl+5 move container to workspace number 5
-bindsym $mod+Ctrl+6 move container to workspace number 6
-bindsym $mod+Ctrl+7 move container to workspace number 7
-bindsym $mod+Ctrl+8 move container to workspace number 8
-bindsym $mod+Ctrl+9 move container to workspace number 9
-bindsym $mod+Ctrl+0 move container to workspace number 10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+z move scratchpad
 bindsym $mod+y $do scratchpad
 
 # reload the configuration file
-bindsym $mod+Ctrl+c reload
+bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Ctrl+r restart
+bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 set_from_resource $border         i3wm.border         #349f89
 set_from_resource $urgent         i3wm.urgent         #d33682
