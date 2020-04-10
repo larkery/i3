@@ -8,6 +8,7 @@ set $mod     Mod4
 
 for_window [class=".*"] border pixel 2
 for_window [class="password-input|Yad"] floating enable; move position mouse
+for_window [title="Microsoft Teams Notification"] floating enable; border pixel 0
 
 popup_during_fullscreen leave_fullscreen
 
@@ -30,6 +31,7 @@ bindsym $mod+x      $do run
 bindsym $mod+e      fullscreen disable, $ens emacsclient -c -n
 bindsym $mod+w      fullscreen disable, $ens firejail firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
+bindsym Shift+XF86Launch1 $ens screen-on
 
 bindsym XF86AudioRaiseVolume $ens pamixer -i 5
 bindsym XF86AudioLowerVolume $ens pamixer -d 5
@@ -38,7 +40,7 @@ bindsym XF86AudioMute        $ens pamixer -t
 bindsym XF86MonBrightnessDown $ens light -U 5
 bindsym XF86MonBrightnessUp   $ens light -A 5
 bindsym $mod+p                $ens autorandr -c --default horizontal
-bindsym $mod+Ctrl+p          $ens autorandr -c --default common
+bindsym $mod+Shift+p          $ens autorandr -c --default common
 bindsym $mod+Mod1+p           $ens autorandr -c --default clone-largest
 
 bindsym $mod+o        $outputs focus-next
@@ -108,6 +110,7 @@ bindsym $mod+Shift+t [workspace=__focused__] floating enable, floating disable; 
 bindsym $mod+b bar mode toggle
 
 bindsym $mod+d floating toggle
+bindsym $mod+Shift+d sticky toggle
 
 #bindsym $mod+e layout toggle split
 
@@ -115,7 +118,6 @@ bindsym $mod+d floating toggle
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 bindsym $mod+m     $do select-window
 
 # focus the parent container
@@ -187,21 +189,37 @@ client.focused_inactive $border     $background $foreground $background
 client.unfocused        $background $background $foreground $background
 client.urgent           $urgent     $urgent     $foreground $edge
 
-set $mode_run 𝐓elegram - 𝐂hrome - 𝐏assm - 𝐀randr - 𝐖ifi - 𝐕olctrl - 𝐇ibernate - 𝐒uspend - Virtual𝐁ox - sc𝐑ot
+set $mode_pwr Hibernate  |  Suspend  |  Reboot  |  Lock  |  Blanking  |  Touchpad
+
+set $mode_run Arandr  |  Chrome  |  virtualBox  |  Password  |  Screenshot  |  Telegram  |  Volume
 
 bindsym $mod+minus mode "$mode_run"
+bindsym $mod+shift+minus mode "$mode_pwr"
 
 mode "$mode_run" {
-     bindsym t $ens telegram-desktop, mode default
+     bindsym a exec arandr, mode default
+     bindsym b exec VirtualBox, mode default
      bindsym c exec firejail chromium, mode default
      bindsym p exec passm, mode default
-     bindsym a exec arandr, mode default
-     bindsym w $ens networkmanager_dmenu -nb '#eee' -nf black -sb black -sf '#eee', mode default
+     bindsym --release s $ens maim -s ~/tmp/screen-$(date +%s).png, mode default
+     bindsym --release Shift+s $ens maim -s | xclip -selection clipboard -t image/png, mode default
+     bindsym t $ens telegram-desktop, mode default
+
      bindsym v exec pavucontrol, mode default
-     bindsym h $ens systemctl hibernate, mode default
-     bindsym s $ens systemctl suspend, mode default
-     bindsym b exec VirtualBox, mode default
-     bindsym --release r $ens scrot -s '/home/hinton/tmp/screen-%F_%H-%M.png', mode default
 
      bindsym Escape mode default
 }
+
+mode "$mode_pwr" {
+     bindsym s $ens systemctl suspend, mode default
+     bindsym $mod+shift+minus $ens systemctl suspend, mode default
+     bindsym h $ens systemctl hibernate, mode default
+     bindsym r $ens systemctl reboot, mode default
+     bindsym l $ens xset dpms force standby, mode default
+     bindsym b $ens screen-on
+     bindsym t $ens touchpad
+     bindsym Escape mode default
+}
+
+gaps inner 4
+gaps outer -4
