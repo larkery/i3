@@ -6,15 +6,27 @@ set $warp    exec --no-startup-id ~/.config/i3/do warp
 set $ens     exec --no-startup-id
 set $mod     Mod4
 
-for_window [class=".*"] border pixel 2
-for_window [class="password-input|Yad"] floating enable; move position mouse
-for_window [title="Microsoft Teams Notification"] floating enable; border pixel 0
+hide_edge_borders smart
+default_border pixel 2
+default_floating_border pixel 2
+
+set $float_on floating enable, border pixel 2, move position mouse
+set $float_toggle floating toggle,  move position mouse, [tiling con_id="__focused__"] border pixel 2, [floating con_id="__focused__"] border pixel 2
+
+for_window [class="password-input|Yad"] $float_on
+for_window [title="Microsoft Teams Notification"] $float_on
+for_window [class="TelegramDesktop"] $float_on
+for_window [class="Pavucontrol"] $float_on
+title_align center
 
 popup_during_fullscreen leave_fullscreen
 
-bindsym --release button2 kill
+bindsym --whole-window $mod+button2 kill
+bindsym --whole-window $mod+button4 $ens transset -p --inc 0.1
+bindsym --whole-window $mod+button5 $ens transset -p --dec 0.1
+bindsym button2 kill
 
-font pango:Monospace 10px
+font pango:Sans 12px
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -27,15 +39,15 @@ bindsym $mod+q kill
 bindsym $mod+c $ens i3-pop
 
 # start dmenu (a program launcher)
-bindsym $mod+x      $do run
+bindsym $mod+space  $ens rofi -show combi
 bindsym $mod+e      fullscreen disable, $ens emacsclient -c -n
 bindsym $mod+w      fullscreen disable, $ens firejail firefox 2>&1 >/dev/null
 bindsym XF86Launch1 $ens touchpad
 bindsym Shift+XF86Launch1 $ens screen-on
 
-bindsym XF86AudioRaiseVolume $ens pamixer -i 5
-bindsym XF86AudioLowerVolume $ens pamixer -d 5
-bindsym XF86AudioMute        $ens pamixer -t
+bindsym XF86AudioRaiseVolume $ens window-volume up
+bindsym XF86AudioLowerVolume $ens window-volume down
+bindsym XF86AudioMute        $ens window-volume mute
 
 bindsym XF86MonBrightnessDown $ens light -U 5
 bindsym XF86MonBrightnessUp   $ens light -A 5
@@ -47,13 +59,16 @@ bindsym $mod+o        $outputs focus-next
 bindsym $mod+Shift+o  $outputs shift-next
 bindsym $mod+Mod1+o   $outputs swap
 bindsym $mod+period   workspace next_on_output
-bindsym $mod+Tab   workspace next_on_output
+bindsym $mod+Tab      workspace next_on_output
 bindsym $mod+comma    workspace prev_on_output
 bindsym $mod+Next     workspace next_on_output
 bindsym $mod+Prior    workspace prev_on_output
-bindsym $mod+slash    workspace back_and_forth
+
 bindsym $mod+s        $do empty-workspace
 bindsym $mod+Shift+s  $do shift-empty
+bindsym $mod+semicolon unmark tgt, mark tgt, $do shift-empty
+bindsym $mod+slash    move window to mark tgt
+bindsym $mod+shift+semicolon [con_mark=tgt] focus, unmark tgt
 
 bindsym $mod+u [urgent="newest"] focus
 
@@ -62,6 +77,9 @@ bindsym $mod+j focus left;  $warp
 bindsym $mod+k focus down;  $warp
 bindsym $mod+i focus up;    $warp
 bindsym $mod+l focus right; $warp
+
+#bindsym $mod+n focus next sibling; $warp
+#bindsym $mod+m focus prev; $warp
 
 bindsym $mod+Mod1+j move left; $warp
 bindsym $mod+Mod1+k move down; $warp
@@ -109,7 +127,8 @@ bindsym $mod+g layout toggle splith splitv tabbed
 bindsym $mod+Shift+t [workspace=__focused__] floating enable, floating disable; layout tabbed
 bindsym $mod+b bar mode toggle
 
-bindsym $mod+d floating toggle
+bindsym $mod+d $float_toggle
+bindsym --release button3 $float_toggle
 bindsym $mod+Shift+d sticky toggle
 
 #bindsym $mod+e layout toggle split
@@ -117,14 +136,10 @@ bindsym $mod+Shift+d sticky toggle
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+m     $do select-window
-
 # focus the parent container
 bindsym $mod+a focus parent
 
 # switch to workspace
-bindsym $mod+semicolon  $do pick
 bindsym $mod+apostrophe $do rename
 bindsym $mod+equal      $do pack
 
@@ -152,6 +167,7 @@ bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
 bindsym $mod+z move scratchpad
+bindsym $mod+x move container to workspace number 10
 bindsym $mod+y $do scratchpad
 
 # reload the configuration file
@@ -161,37 +177,41 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-set_from_resource $border         i3wm.border         #349f89
-set_from_resource $urgent         i3wm.urgent         #d33682
-set_from_resource $accent         i3wm.accent         #6c71c4
-set_from_resource $edge           i3wm.edge           #00C1FF
-set_from_resource $background     i3wm.background     #002b36
-set_from_resource $foreground     i3wm.foreground     #fdf6e3
-set_from_resource $border_con     i3wm.border_con     #fdf6e3
-set_from_resource $bar_background i3wm.bar_background #002b36
-set_from_resource $bar_foreground i3wm.bar_foreground #fdf6e3
+# set_from_resource $border         i3wm.border         #349f89
+# set_from_resource $urgent         i3wm.urgent         #d33682
+# set_from_resource $accent         i3wm.accent         #6c71c4
+# set_from_resource $edge           i3wm.edge           #00C1FF
+# set_from_resource $background     i3wm.background     #002b36
+# set_from_resource $foreground     i3wm.foreground     #fdf6e3
+# set_from_resource $foreground2    i3wm.foreground2    #cdc6b3
+# set_from_resource $border_con     i3wm.border_con     #fdf6e3
+# set_from_resource $bar_background i3wm.bar_background #002b36
+# set_from_resource $bar_foreground i3wm.bar_foreground #fdf6e3
 
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     tray_output    primary
-    font           pango:Sans 8
-    colors {
-       background         $bar_background
-       focused_workspace  $border         $border         $border_con
-       active_workspace   $foreground     $accent         $bar_foreground
-       inactive_workspace $bar_background $bar_background $bar_foreground
-       urgent_workspace   $urgent         $urgent         $bar_foreground
-    }
+    font           pango:Sans 10
+
+    bindsym button2 $do empty-workspace
+    bindsym button1 workspace back_and_forth
+    # colors {
+    #    background         $bar_background
+    #    focused_workspace  $border         $border         $border_con
+    #    active_workspace   $foreground     $accent         $bar_foreground
+    #    inactive_workspace $bar_background $bar_background $bar_foreground
+    #    urgent_workspace   $urgent         $urgent         $bar_foreground
+    # }
 }
 
-client.focused          $border     $border     $border_con $edge
-client.focused_inactive $border     $background $foreground $background
-client.unfocused        $background $background $foreground $background
-client.urgent           $urgent     $urgent     $foreground $edge
+# client.focused          $background $border     $border_con $edge $background
+# client.focused_inactive $background     $background $foreground $background $background
+# client.unfocused        $background $background $foreground2 $background $background
+# client.urgent           $urgent     $urgent     $foreground $edge
 
 set $mode_pwr Hibernate  |  Suspend  |  Reboot  |  Lock  |  Blanking  |  Touchpad
 
-set $mode_run Arandr  |  Chrome  |  virtualBox  |  Password  |  Screenshot  |  Telegram  |  Volume
+set $mode_run Arandr  |  Chrome  |  virtualBox  |  Password  |  Screenshot  |  Telegram  |  Volume  |  Zoom  |  tEams  |  spotifY
 
 bindsym $mod+minus mode "$mode_run"
 bindsym $mod+shift+minus mode "$mode_pwr"
@@ -204,7 +224,9 @@ mode "$mode_run" {
      bindsym --release s $ens maim -s ~/tmp/screen-$(date +%s).png, mode default
      bindsym --release Shift+s $ens maim -s | xclip -selection clipboard -t image/png, mode default
      bindsym t $ens telegram-desktop, mode default
-
+     bindsym z exec zoom-us, mode default
+     bindsym e exec teams-for-linux, mode default
+     bindsym y exec spotify, mode default
      bindsym v exec pavucontrol, mode default
 
      bindsym Escape mode default
@@ -223,3 +245,5 @@ mode "$mode_pwr" {
 
 gaps inner 4
 gaps outer -4
+
+$ens setroot
