@@ -27,6 +27,9 @@ pack () {
         {
             C="nop"
             while read -r num nam; do
+                if [[ $num = 10 ]]; then
+                    continue
+                fi
                 nam=$(eval "echo $nam")
                 if [[ $num -ne $L ]]; then
                     C="$C; rename workspace \"$nam\" to \"${nam/$num/$L}\""
