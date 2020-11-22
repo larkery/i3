@@ -75,7 +75,7 @@ scratchpad () {
 
 case $1 in
     scratchpad)
-        scratchpad
+        scratchpad "$2"
         ;;
     view)
         view "$2"
