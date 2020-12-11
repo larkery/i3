@@ -1,0 +1,10 @@
+i3wm.border:         #ffbf00
+i3wm.urgent:         #ff0000
+i3wm.accent:         #6c71c4
+i3wm.edge:           #349f89
+i3wm.background:     #002b36
+i3wm.foreground:     #fdf6e3
+i3wm.foreground2:    #cdc6b3
+i3wm.bar_background: #002b36
+i3wm.bar_foreground: #fdf6e3
+i3wm.border_con:     #002b36

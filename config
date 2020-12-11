@@ -70,6 +70,7 @@ bindsym $mod+semicolon unmark tgt, mark tgt, $do shift-empty
 bindsym $mod+slash    move window to mark tgt
 bindsym $mod+shift+semicolon [con_mark=tgt] focus, unmark tgt
 
+bindsym $mod+n $ens dunstctl close
 bindsym $mod+u [urgent="newest"] focus
 
 # change focus
@@ -175,7 +176,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e $ens xfce4-session-logout
 
 # set_from_resource $border         i3wm.border         #349f89
 # set_from_resource $urgent         i3wm.urgent         #d33682
